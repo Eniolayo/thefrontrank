@@ -5,5 +5,7 @@ export default function Container({
 }: {
   children: JSX.Element;
 }): React.JSX.Element {
-  return <section className="w-[90%] mx-auto">{children}</section>;
+  return (
+    <section className="w-[90%] mx-auto max-w-screen-2xl">{children}</section>
+  );
 }
