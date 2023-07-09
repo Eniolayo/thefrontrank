@@ -2,11 +2,14 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import { Header } from "../components/generic";
 import Container from "../components/ui/container";
-import { graphql, useStaticQuery } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import "../styles/global.css";
+import { WebsiteLogo } from "../images/svg";
+import { Icon } from "@iconify/react";
+import Footer from "../components/generic/footer";
 
-function IndexPage() {
+export default function IndexPage() {
   return (
     <div>
       <Header />
@@ -32,39 +35,44 @@ function IndexPage() {
           </div>
         </Container>
       </section>
-      <Container>
-        <div className="space-y-8 mt-32 mb-10">
-          <h2 className="font-bold text-4xl">Editor’s Pick</h2>
-          <section className="flex justify-center items-center flex-wrap gap-6">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <div
-                className="bg-image relative p-8 max-w-md mx-auto rounded-lg text-white pt-32 space-y-2"
-                key={index}
-              >
-                <span className="bg-black font-bold absolute top-3 right-3 font-sans bg-opacity-40 text-white rounded-lg text-sm px-2 py-1 ">
-                  ADVENTURE
-                </span>
-                <p>08.08.2021</p>
-                <h4 className="text-2xl font-bold">
-                  Richird Norton photorealistic rendering as real photos
-                </h4>
-                <p className="text-sm">
-                  Progressively incentivize cooperative systems through
-                  technically sound functionalities. The credibly productivate
-                  seamless data.
-                </p>
-              </div>
-            ))}
-          </section>
-        </div>
-      </Container>
+      <EditorPick />
+      <Footer />
     </div>
   );
 }
 
-export default IndexPage;
-
 export const Head: HeadFC = () => <title>Home Page</title>;
+
+function EditorPick() {
+  return (
+    <Container>
+      <div className="space-y-8 mt-32 mb-10">
+        <h2 className="font-bold text-4xl">Editor’s Pick</h2>
+        <section className="flex justify-center items-center flex-wrap gap-6">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div
+              className="bg-image relative p-8 max-w-md mx-auto rounded-lg text-white pt-32 space-y-2"
+              key={index}
+            >
+              <span className="bg-black font-bold absolute top-3 right-3 font-sans bg-opacity-40 text-white rounded-lg text-sm px-2 py-1 ">
+                ADVENTURE
+              </span>
+              <p>08.08.2021</p>
+              <h4 className="text-2xl font-bold">
+                Richird Norton photorealistic rendering as real photos
+              </h4>
+              <p className="text-sm">
+                Progressively incentivize cooperative systems through
+                technically sound functionalities. The credibly productivate
+                seamless data.
+              </p>
+            </div>
+          ))}
+        </section>
+      </div>
+    </Container>
+  );
+}
 
 function PopularTopic() {
   const data = useStaticQuery(graphql`
