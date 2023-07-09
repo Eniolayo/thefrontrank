@@ -5,9 +5,10 @@ import Container from "../ui/container";
 import "../../styles/global.css";
 
 export default function Header(): JSX.Element {
+  // Change the bg opacity when we start scrolling
   return (
     <header className="bg-image">
-      <div className="bg-white bg-opacity-40">
+      <div className="bg-white fixed top-0 z-50 w-full bg-opacity-40">
         <Container>
           <div className="flex justify-between items-center py-5 ">
             <div className="max-w-[200px] w-[90%]">
@@ -30,7 +31,7 @@ export default function Header(): JSX.Element {
           </div>
         </Container>
       </div>
-      <div className="mt-52">
+      <div className="pt-64 py-10">
         <Container>
           <div className="text-white space-y-6 py-10">
             <span className="bg-white font-bold font-sans bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
