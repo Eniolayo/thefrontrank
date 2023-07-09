@@ -46,7 +46,7 @@ export default function Header(): JSX.Element {
       >
         <Container>
           <div className="flex justify-between items-center py-5 ">
-            <div className="max-w-[200px] w-[90%]">
+            <div className="max-w-[270px] w-[90%]">
               <WebsiteLogo />
             </div>
             <nav

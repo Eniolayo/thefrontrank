@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="bg-secondary-400 py-8">
         <Container>
           <div className="flex gap-10 flex-wrap lg:justify-between flex-col md:flex-row items-start py-10 text-white">
-            <div className="w-52 h-16 pt-1 px-2 rounded-md bg-slate-50">
+            <div className="w-[265px] h-16 pt-1 px-2 rounded-md bg-slate-50 text-black">
               <WebsiteLogo />
             </div>
             <AboutUsSection />
@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="bg-secondary-500 py-8">
         <Container>
           <div className="flex justify-between text-white items-center">
-            <p>{dateInstance.getFullYear()} | Thefrontrank</p>
+            <p>{dateInstance.getFullYear()} | The Front-Rank</p>
             <Link to="/">Subscribe Now</Link>
           </div>
         </Container>
