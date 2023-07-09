@@ -5,7 +5,7 @@ import Container from "../ui/container";
 import "../../styles/global.css";
 import { Link } from "gatsby";
 
-export default function Header(): JSX.Element {
+export default function Header({ isStrory = false }): JSX.Element {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const genericHamburgerLine = `
@@ -96,22 +96,46 @@ export default function Header(): JSX.Element {
           </div>
         </Container>
       </div>
-      <div className="pt-64 py-10">
-        <Container>
-          <div className="text-white space-y-6 py-10">
-            <span className="bg-white font-bold font-sans bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
-              ADVENTURE
-            </span>
-            <h2 className="text-5xl max-w-3xl leading-tight font-bold">
-              Richird Norton photorealistic rendering as real photos
-            </h2>
-            <p className="text-secondary-100 max-w-2xl">
-              Progressively incentivize cooperative systems through technically
-              sound functionalities. The credibly productivate seamless data.
-            </p>
-          </div>
-        </Container>
-      </div>
+      {isStrory ? (
+        <div className="pt-64 py-10">
+          <Container>
+            <div className="text-white text-center space-y-6 py-10">
+              <span className="bg-white font-bold font-sans bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
+                FASHION
+              </span>
+              <h2 className="text-5xl max-w-3xl mx-auto leading-tight font-bold">
+                Richird Norton photorealistic rendering as real photos
+              </h2>
+              <p className="text-secondary-100 max-w-2xl mx-auto">
+                Progressively incentivize cooperative systems through
+                technically sound functionalities. The credibly productivate
+                seamless data.
+              </p>
+              <p className="text-secondary-100 max-w-2xl font-black text-xl mx-auto">
+                By Jennifer Lawrence
+              </p>
+            </div>
+          </Container>
+        </div>
+      ) : (
+        <div className="pt-64 py-10">
+          <Container>
+            <div className="text-white space-y-6 py-10">
+              <span className="bg-white font-bold font-sans bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
+                ADVENTURE
+              </span>
+              <h2 className="text-5xl max-w-3xl leading-tight font-bold">
+                Richird Norton photorealistic rendering as real photos
+              </h2>
+              <p className="text-secondary-100 max-w-2xl">
+                Progressively incentivize cooperative systems through
+                technically sound functionalities. The credibly productivate
+                seamless data.
+              </p>
+            </div>
+          </Container>
+        </div>
+      )}
     </header>
   );
 }

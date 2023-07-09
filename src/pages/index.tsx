@@ -2,7 +2,7 @@ import * as React from "react";
 import type { HeadFC } from "gatsby";
 import { Header } from "../components/generic";
 import Container from "../components/ui/container";
-import { graphql, useStaticQuery } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import "../styles/global.css";
 import Footer from "../components/generic/footer";
@@ -114,7 +114,8 @@ function PopularTopic() {
           </div>
           <section className="mt-10 grid grid-cols-[repeat(auto-fit,_minmax(370px,_1fr))] gap-5">
             {Array.from({ length: 9 }).map((_, index) => (
-              <div
+              <Link
+                to={"/story/testtttt"}
                 className="max-w-[370px] space-y-3 relative mx-auto"
                 key={index}
               >
@@ -135,7 +136,7 @@ function PopularTopic() {
                   technically sound functionalities. Credibly productivate
                   seamless data with flexible schemas.
                 </p>
-              </div>
+              </Link>
             ))}
           </section>
         </section>
