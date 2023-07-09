@@ -158,7 +158,9 @@ function PopularTopic() {
             "Technology",
             "Branding",
           ].map((item) => (
-            <option selected={item == "All"}>{item}</option>
+            <option defaultValue={item == "All" ? 1 : 0} key={item}>
+              {item}
+            </option>
           ))}
         </select>
       </div>

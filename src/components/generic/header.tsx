@@ -63,8 +63,8 @@ export default function Header(): JSX.Element {
               </ul>
               <ul className="flex flex-col md:flex-row gap-4 items-center border-t md:border-t-0 pt-3 md:pt-0 md:border-l pl-3">
                 {SocialIcon.map((each: string) => (
-                  <li>
-                    <Icon icon={each} key={each} fontSize={25} />
+                  <li key={each}>
+                    <Icon icon={each} fontSize={25} />
                   </li>
                 ))}
               </ul>
