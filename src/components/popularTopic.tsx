@@ -2,6 +2,7 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 import Container from "./ui/container";
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
+import Card from "./generic/card";
 
 export default function PopularTopic() {
   const data = useStaticQuery(graphql`
@@ -45,29 +46,7 @@ export default function PopularTopic() {
           </div>
           <section className="mt-10 grid grid-cols-[repeat(auto-fit,_minmax(370px,_1fr))] gap-5">
             {Array.from({ length: 9 }).map((_, index) => (
-              <Link
-                to={"/story/kAMV2VZ2e"}
-                className="max-w-[370px] space-y-3 relative mx-auto"
-                key={index}
-              >
-                <GatsbyImage
-                  image={data.image.childImageSharp.gatsbyImageData}
-                  alt="My Image"
-                  className="h-60 rounded-lg"
-                />
-                <span className="bg-black font-bold absolute top-0 right-3 font-sans bg-opacity-40 text-white rounded-lg text-sm px-2 py-1 ">
-                  ADVENTURE
-                </span>
-                <p>08.08.2021</p>
-                <h3 className="text-2xl font-bold text-secondary-200">
-                  Dream destinations to visit this year in Paris
-                </h3>
-                <p className="text-secondary-300 text-sm">
-                  Progressively incentivize cooperative systems through
-                  technically sound functionalities. Credibly productivate
-                  seamless data with flexible schemas.
-                </p>
-              </Link>
+              <Card key={index} url="kAMV2VZ2e" data={data} />
             ))}
           </section>
         </section>

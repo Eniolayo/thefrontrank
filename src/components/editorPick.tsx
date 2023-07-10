@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "./ui/container";
+import { Link } from "gatsby";
 
 export default function EditorPick() {
   return (
@@ -8,7 +9,8 @@ export default function EditorPick() {
         <h2 className="font-bold text-4xl">Editor’s Pick</h2>
         <section className="flex justify-center items-center flex-wrap gap-6">
           {Array.from({ length: 3 }).map((_, index) => (
-            <div
+            <Link
+              to="/"
               className="bg-image relative p-8 max-w-md mx-auto rounded-lg text-white pt-32 space-y-2"
               key={index}
             >
@@ -24,7 +26,7 @@ export default function EditorPick() {
                 technically sound functionalities. The credibly productivate
                 seamless data.
               </p>
-            </div>
+            </Link>
           ))}
         </section>
       </div>

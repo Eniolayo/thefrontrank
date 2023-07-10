@@ -4,6 +4,7 @@ import Container from "../../components/ui/container";
 import { Icon } from "@iconify/react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import Card from "../../components/generic/card";
 
 export default function Story({ id }: { id: any }): React.JSX.Element {
   const data = useStaticQuery(graphql`
@@ -118,29 +119,7 @@ export default function Story({ id }: { id: any }): React.JSX.Element {
           </h4>
           <section className="flex justify-center items-center flex-wrap gap-6">
             {Array.from({ length: 3 }).map((_, index) => (
-              <Link
-                to={"/story/kAMV2VZ2e"}
-                className="max-w-[370px] space-y-3 relative mx-auto"
-                key={index}
-              >
-                <GatsbyImage
-                  image={data.image.childImageSharp.gatsbyImageData}
-                  alt="My Image"
-                  className="h-60 rounded-lg"
-                />
-                <span className="bg-black font-bold absolute top-0 right-3 font-sans bg-opacity-40 text-white rounded-lg text-sm px-2 py-1 ">
-                  ADVENTURE
-                </span>
-                <p>08.08.2021</p>
-                <h3 className="text-2xl font-bold text-secondary-200">
-                  Dream destinations to visit this year in Paris
-                </h3>
-                <p className="text-secondary-300 text-sm">
-                  Progressively incentivize cooperative systems through
-                  technically sound functionalities. Credibly productivate
-                  seamless data with flexible schemas.
-                </p>
-              </Link>
+              <Card key={index} url="kAMV2VZ2e" data={data} />
             ))}
           </section>
         </div>
