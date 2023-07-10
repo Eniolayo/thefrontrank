@@ -2,7 +2,7 @@ import * as React from "react";
 import type { HeadFC } from "gatsby";
 import { Header, Footer } from "../components/generic";
 import "../styles/global.css";
-import { InfoSection, EditorPick, PopularTopic } from "../components/";
+import { InfoSection, EditorPick, PopularTopic } from "../templates/";
 
 export default function IndexPage() {
   return (

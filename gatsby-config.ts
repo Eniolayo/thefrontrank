@@ -14,6 +14,20 @@ const config: GatsbyConfig = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     {
+      resolve: "gatsby-plugin-alias-imports",
+      options: {
+        alias: {
+          "@components": "src/components",
+          "@styles": "src/styles",
+          // "@utils": "src/utils",
+          "@pages": "src/pages",
+          "@templates": "src/templates",
+          // Add more aliases as needed
+        },
+        extensions: ["tsx", "ts", "js", "jsx"],
+      },
+    },
+    {
       resolve: "gatsby-plugin-sitemap",
       options: {
         output: "/sitemap.xml",

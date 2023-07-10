@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "./ui/container";
+import Container from "../../components/ui/container";
 import { Link } from "gatsby";
 
 export default function EditorPick() {

@@ -1,8 +1,8 @@
 import { Link, graphql, useStaticQuery } from "gatsby";
-import Container from "./ui/container";
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Card from "./generic/card";
+import Card from "../../components/generic/card";
+import Container from "../../components/ui/container";
 
 export default function PopularTopic() {
   const data = useStaticQuery(graphql`
