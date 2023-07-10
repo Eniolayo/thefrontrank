@@ -27,12 +27,9 @@ const config: GatsbyConfig = {
         extensions: ["tsx", "ts", "js", "jsx"],
       },
     },
-    {
-      resolve: "gatsby-plugin-sitemap",
-      options: {
-        output: "/sitemap.xml",
-      },
-    },
+
+    "gatsby-plugin-sitemap",
+
     {
       resolve: "gatsby-plugin-manifest",
       options: {
