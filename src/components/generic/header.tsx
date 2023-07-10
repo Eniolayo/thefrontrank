@@ -5,7 +5,10 @@ import Container from "../ui/container";
 import "../../styles/global.css";
 import { Link } from "gatsby";
 
-export default function Header({ isStory = false }): JSX.Element {
+export default function Header({
+  isStory = false,
+  isNeutral = false,
+}): JSX.Element {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const genericHamburgerLine = `
@@ -55,9 +58,9 @@ export default function Header({ isStory = false }): JSX.Element {
               } md:scale-100 origin-top transition-all duration-300 gap-5`}
             >
               <ul className="flex flex-col md:flex-row gap-5 items-center">
-                {NavLinks.map((each: string) => (
-                  <li key={each}>
-                    <Link to="/">{each}</Link>
+                {NavLinks.map((each) => (
+                  <li key={each.title}>
+                    <Link to={each.url}>{each.title}</Link>
                   </li>
                 ))}
               </ul>
@@ -96,7 +99,7 @@ export default function Header({ isStory = false }): JSX.Element {
           </div>
         </Container>
       </div>
-      {isStory ? (
+      {isNeutral ? null : isStory ? (
         <div className="pt-64 py-10">
           <Container>
             <div className="text-white text-center space-y-6 py-10">
@@ -140,4 +143,12 @@ export default function Header({ isStory = false }): JSX.Element {
   );
 }
 const SocialIcon: string[] = ["ic:round-facebook", "uim:twitter"];
-const NavLinks: string[] = ["Home", "About", "Articles", "Contact Us"];
+const NavLinks: {
+  title: string;
+  url: string;
+}[] = [
+  { title: "Home", url: "/" },
+  { title: "About", url: "/about-us" },
+  { title: "Articles", url: "/" },
+  { title: "Contact Us", url: "/" },
+];
