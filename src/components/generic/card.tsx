@@ -12,7 +12,7 @@ export default function Card({
   return (
     <Link
       to={`/story/${url}`}
-      className="max-w-[370px] rounded-lg overflow-hidden hover:shadow-lg transition-all space-y-3 relative mx-auto"
+      className="max-w-[370px] rounded-lg overflow-hidden hover:shadow-lg transition-all space-y-3 relative mx-auto block"
     >
       <GatsbyImage
         image={data.image.childImageSharp.gatsbyImageData}

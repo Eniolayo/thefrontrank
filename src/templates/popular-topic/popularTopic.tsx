@@ -1,6 +1,5 @@
-import { Link, graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { graphql, useStaticQuery } from "gatsby";
 import Card from "../../components/generic/card";
 import Container from "../../components/ui/container";
 
