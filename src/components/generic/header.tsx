@@ -5,7 +5,7 @@ import Container from "../ui/container";
 import "../../styles/global.css";
 import { Link } from "gatsby";
 
-export default function Header({ isStrory = false }): JSX.Element {
+export default function Header({ isStory = false }): JSX.Element {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const genericHamburgerLine = `
@@ -46,9 +46,9 @@ export default function Header({ isStrory = false }): JSX.Element {
       >
         <Container>
           <div className="flex justify-between items-center py-5 ">
-            <div className="max-w-[270px] w-[90%]">
+            <Link to="/" className="max-w-[270px] w-[90%]">
               <WebsiteLogo />
-            </div>
+            </Link>
             <nav
               className={`w-[100%] inset-x-0 md:w-fit absolute top-full p-8 md:p-0 bg-white bg-opacity-80 shadow-lg md:shadow-none md:bg-transparent md:flex md:relative justify-between z-50 ${
                 isOpen ? "scale-y-100" : "scale-y-0"
@@ -96,7 +96,7 @@ export default function Header({ isStrory = false }): JSX.Element {
           </div>
         </Container>
       </div>
-      {isStrory ? (
+      {isStory ? (
         <div className="pt-64 py-10">
           <Container>
             <div className="text-white text-center space-y-6 py-10">
