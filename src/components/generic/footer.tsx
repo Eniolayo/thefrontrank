@@ -17,6 +17,7 @@ export default function Footer() {
             </div>
             <AboutUsSection />
             <ContactAndLegal />
+            <PopularTopics />
             <FollowLinks />
           </div>
         </Container>
@@ -24,7 +25,10 @@ export default function Footer() {
       <div className="bg-secondary-500 py-8">
         <Container>
           <div className="flex justify-between text-white items-center">
-            <p>{dateInstance.getFullYear()} | The Front-Rank</p>
+            <p>
+              Copyright © {dateInstance.getFullYear()} | The Front-Rank . All
+              rights reserved{" "}
+            </p>
             <Link to="/">Subscribe Now</Link>
           </div>
         </Container>
@@ -65,7 +69,20 @@ function AboutUsSection() {
 function ContactAndLegal() {
   return (
     <ul className="space-y-2">
-      {["Privacy Policy", "Terms and Conditions"].map((item) => (
+      {Contact.map((item) => (
+        <li key={item}>
+          <Link to={"/"} className="capitalize">
+            {item}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+function PopularTopics() {
+  return (
+    <ul className="space-y-2">
+      {Popular.map((item) => (
         <li key={item}>
           <Link to={"/"} className="capitalize">
             {item}
@@ -79,5 +96,12 @@ function ContactAndLegal() {
 const AboutUs = [
   { name: "Home", link: "/" },
   { name: "About Us", link: "/" },
-  { name: "Services", link: "/" },
+  { name: "Contact Us", link: "/" },
 ];
+const Contact = [
+  "Advertise",
+  "Copyright",
+  "Privacy Policy",
+  "Terms and Conditions",
+];
+const Popular = ["Travel", "Fashion", "Branding", "Adventure", "Technology"];

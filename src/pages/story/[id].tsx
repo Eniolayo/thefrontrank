@@ -1,6 +1,5 @@
 import React from "react";
-import { Header } from "../../components/generic";
-import Footer from "../../components/generic/footer";
+import { Header, Footer } from "../../components/generic";
 import Container from "../../components/ui/container";
 import { Icon } from "@iconify/react";
 import { Link, graphql, useStaticQuery } from "gatsby";
