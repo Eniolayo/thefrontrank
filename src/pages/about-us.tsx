@@ -1,49 +1,49 @@
 import React from "react";
 import Container from "../components/ui/container";
 import { Footer, Header } from "../components/generic";
-import { gql, useQuery } from "@apollo/client";
-import client from "../../apolloClient";
-import { graphql, useStaticQuery } from "gatsby";
-import useGetMoreData from "../utils/useGetMoreData";
+// import { gql, useQuery } from "@apollo/client";
+// import client from "../../apolloClient";
+// import { graphql, useStaticQuery } from "gatsby";
+// import useGetMoreData from "../utils/useGetMoreData";
 
-export const Wuery = gql`
-  query BlogPost($contentfulId: String!) {
-    pageBlogPost(id: $contentfulId) {
-      id
-      title
-      content
-      featuredImage {
-        file {
-          url
-        }
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, formats: AUTO)
-      }
-      publishedDate(fromNow: false)
-      author {
-        avatar {
-          file {
-            url
-          }
-          title
-          gatsbyImageData(
-            layout: FULL_WIDTH
-            placeholder: BLURRED
-            formats: AUTO
-          )
-        }
-      }
-    }
-  }
-`;
+// export const Wuery = gql`
+//   query BlogPost($contentfulId: String!) {
+//     pageBlogPost(id: $contentfulId) {
+//       id
+//       title
+//       content
+//       featuredImage {
+//         file {
+//           url
+//         }
+//         gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, formats: AUTO)
+//       }
+//       publishedDate(fromNow: false)
+//       author {
+//         avatar {
+//           file {
+//             url
+//           }
+//           title
+//           gatsbyImageData(
+//             layout: FULL_WIDTH
+//             placeholder: BLURRED
+//             formats: AUTO
+//           )
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export default function AboutUs() {
   const dataInstance = new Date();
-  const [data] = useGetMoreData("4YpnxRJ6o0uhD0pxY7hHRF");
-  React.useEffect(() => {
-    console.log(data);
+  // const [data] = useGetMoreData("4YpnxRJ6o0uhD0pxY7hHRF");
+  // React.useEffect(() => {
+  //   console.log(data);
 
-    // const { contentfulPageBlogPost } = data;
-  }, []);
+  //   const { contentfulPageBlogPost } = data;
+  // }, []);
 
   // console.log(gas);
   // console.log(error?.message);
