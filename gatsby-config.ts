@@ -1,11 +1,12 @@
 import type { GatsbyConfig } from "gatsby";
+require("dotenv").config();
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `The Front-Rank`,
     description: `Stay updated with the latest trends, news, and expert opinions through our informative blog. Delve into engaging content designed to educate and entertain.`,
     author: `@ayodejiikujuni`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://www.thefrontrank.com`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -40,8 +41,8 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://thefrontrankmaster.gatsbyjs.io/",
-        sitemap: "https://thefrontrankmaster.gatsbyjs.io/sitemap.xml",
+        host: "https://www.thefrontrank.com/",
+        sitemap: "https://www.thefrontrank.com/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
@@ -49,6 +50,13 @@ const config: GatsbyConfig = {
     "gatsby-transformer-remark",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {

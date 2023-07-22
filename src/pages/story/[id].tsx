@@ -6,8 +6,14 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Card from "../../components/generic/card";
 
-export default function Story({ id }: { id: any }): React.JSX.Element {
-  const data = useStaticQuery(graphql`
+export default function Story({
+  id,
+  data,
+}: {
+  id: string;
+  data: any;
+}): React.JSX.Element {
+  const daa = useStaticQuery(graphql`
     query {
       image: file(relativePath: { eq: "header-bg.avif" }) {
         childImageSharp {
@@ -16,6 +22,7 @@ export default function Story({ id }: { id: any }): React.JSX.Element {
       }
     }
   `);
+
   return (
     <div>
       <Header isStory={true} />
@@ -57,12 +64,12 @@ export default function Story({ id }: { id: any }): React.JSX.Element {
           </p>
           <div className="flex gap-10">
             <GatsbyImage
-              image={data.image.childImageSharp.gatsbyImageData}
+              image={daa.image.childImageSharp.gatsbyImageData}
               alt="My Image"
               className="h-72 flex-1 rounded-lg"
             />
             <GatsbyImage
-              image={data.image.childImageSharp.gatsbyImageData}
+              image={daa.image.childImageSharp.gatsbyImageData}
               alt="My Image"
               className="h-72 flex-1 rounded-lg"
             />
@@ -93,7 +100,7 @@ export default function Story({ id }: { id: any }): React.JSX.Element {
           <div className="flex justify-between">
             <div className="flex items-center gap-3">
               <GatsbyImage
-                image={data.image.childImageSharp.gatsbyImageData}
+                image={daa.image.childImageSharp.gatsbyImageData}
                 alt="My Image"
                 className="h-20 w-20 rounded-full flex-1"
               />
@@ -118,9 +125,9 @@ export default function Story({ id }: { id: any }): React.JSX.Element {
             Related Posts
           </h4>
           <section className="flex justify-center items-center flex-wrap gap-6">
-            {Array.from({ length: 3 }).map((_, index) => (
+            {/* {Array.from({ length: 3 }).map((_, index) => (
               <Card key={index} url="kAMV2VZ2e" data={data} />
-            ))}
+            ))} */}
           </section>
         </div>
       </Container>

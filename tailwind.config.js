@@ -5,6 +5,7 @@ module.exports = {
   content: [
     `./src/pages/**/*.{js,jsx,ts,tsx,svg}`,
     `./src/components/**/*.{js,jsx,ts,tsx,svg}`,
+    `./src/templates/**/*.{js,jsx,ts,tsx,svg}`,
   ],
   mode: "jit",
   theme: {

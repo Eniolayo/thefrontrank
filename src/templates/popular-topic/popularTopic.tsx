@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import Card from "../../components/generic/card";
 import Container from "../../components/ui/container";
 
-export default function PopularTopic() {
+export default function PopularTopic({ dat }: { dat: any }): React.JSX.Element {
   const data = useStaticQuery(graphql`
     query {
       image: file(relativePath: { eq: "header-bg.avif" }) {
@@ -44,8 +44,16 @@ export default function PopularTopic() {
             <a href="#">View All</a>
           </div>
           <section className="mt-10 grid grid-cols-[repeat(auto-fit,_minmax(370px,_1fr))] gap-5">
-            {Array.from({ length: 9 }).map((_, index) => (
-              <Card key={index} url="kAMV2VZ2e" data={data} />
+            {dat.map((each: any, index: React.Key | null | undefined) => (
+              <Card
+                name={each.internalName}
+                key={index}
+                url={each.contentful_id}
+                data={data}
+                desc={each.shortDescription.shortDescription}
+                img={each.featuredImage.gatsbyImageData}
+                date={each.publishedDate}
+              />
             ))}
           </section>
         </section>
