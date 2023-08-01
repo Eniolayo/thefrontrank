@@ -32,47 +32,46 @@ export default function Story({
       }
     }
   `);
+  const fetchContentfulData = () => {
+    const spaceId = process.env.CONTENTFUL_SPACE_ID;
+    const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+    const url = `https://cdn.contentful.com/spaces/${spaceId}/entries?content_type=pageBlogPost&sys.id=${id}&access_token=${accessToken}`;
 
-  React.useEffect(() => {
-    const fetchContentfulData = async () => {
-      const spaceId = process.env.CONTENTFUL_SPACE_ID;
-      const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
-      const url = `https://cdn.contentful.com/spaces/${spaceId}/entries?content_type=pageBlogPost&sys.id=${id}&access_token=${accessToken}`;
+    try {
+      axios
+        .get(url)
+        .then((response) => {
+          const entry = response.data.items[0];
+          console.log(entry);
+          const contentArray = entry.fields.content.content;
 
-      try {
-        axios
-          .get(url)
-          .then((response) => {
-            const entry = response.data.items[0];
-            console.log(entry);
-            const contentArray = entry.fields.content.content;
-
-            const filteredContent = contentArray.filter(
-              (each: { nodeType: string }) => each.nodeType === "paragraph"
-            );
-            const extractedValues = filteredContent.map(
-              (item: { content: any }) => item.content[0].value
-            );
-            setContent({
-              heading: entry.fields.internalName,
-              subHeading: entry.fields.shortDescription,
-              mainSection: extractedValues.join(" "),
-              tag: entry?.metadata?.tags[0]?.sys.id,
-              date: entry.sys.createdAt,
-              estimatedTime: calculateReadingTime(extractedValues.join(" ")),
-            });
-            console.log(entry.sys.createdAt, "entry.sys.createdAt");
-
-            return extractedValues.join(" ");
-          })
-          .catch((error) => {
-            console.error("Error fetching content entry:", error);
+          const filteredContent = contentArray.filter(
+            (each: { nodeType: string }) => each.nodeType === "paragraph"
+          );
+          const extractedValues = filteredContent.map(
+            (item: { content: any }) => item.content[0].value
+          );
+          setContent({
+            heading: entry.fields.internalName,
+            subHeading: entry.fields.shortDescription,
+            mainSection: extractedValues.join(" "),
+            tag: entry?.metadata?.tags[0]?.sys.id,
+            date: entry.sys.createdAt,
+            estimatedTime: calculateReadingTime(extractedValues.join(" ")),
           });
-      } catch (error) {
-        console.error("Error fetching Contentful data:", error);
-        return null;
-      }
-    };
+          console.log(entry.sys.createdAt, "entry.sys.createdAt");
+
+          return extractedValues.join(" ");
+        })
+        .catch((error) => {
+          console.error("Error fetching content entry:", error);
+        });
+    } catch (error) {
+      console.error("Error fetching Contentful data:", error);
+      return null;
+    }
+  };
+  React.useEffect(() => {
     fetchContentfulData();
   }, []);
 
