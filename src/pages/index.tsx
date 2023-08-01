@@ -18,7 +18,7 @@ export default function IndexPage({ data }: { data: any }) {
       const posts = data.allContentfulPageBlogPost.nodes;
       // console.log(posts[0].contentful_id);
       setContentString(posts);
-      console.log(posts[0].internalName);
+      console.log(posts[0]);
 
       setContent({
         heading: posts[0].internalName,

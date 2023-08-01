@@ -19,6 +19,8 @@ export default function Story({
     subHeading: "",
     mainSection: "",
     tag: "",
+    date: "",
+    estimatedTime: 0,
   });
 
   const daa = useStaticQuery(graphql`
@@ -30,6 +32,7 @@ export default function Story({
       }
     }
   `);
+
   React.useEffect(() => {
     const fetchContentfulData = async () => {
       const spaceId = process.env.CONTENTFUL_SPACE_ID;
@@ -52,10 +55,13 @@ export default function Story({
             );
             setContent({
               heading: entry.fields.internalName,
-              subHeading: "",
+              subHeading: entry.fields.shortDescription,
               mainSection: extractedValues.join(" "),
-              tag: entry.metadata.tags[0].sys.id,
+              tag: entry?.metadata?.tags[0]?.sys.id,
+              date: entry.sys.createdAt,
+              estimatedTime: calculateReadingTime(extractedValues.join(" ")),
             });
+            console.log(entry.sys.createdAt, "entry.sys.createdAt");
 
             return extractedValues.join(" ");
           })
@@ -76,20 +82,24 @@ export default function Story({
         mainHeading={content.heading}
         tag={content.tag}
         isStory={true}
-        subHeading=""
+        subHeading={content.subHeading}
       />
       <Container>
         <div className="mt-24 space-y-10 text-lg max-w-[900px] mx-auto">
           <div className="flex justify-between">
-            <p>08.08.2021</p>
-            <p>4 minutes read</p>
+            <p>
+              {new Date(content.date)
+                .toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })
+                .replaceAll("/", ".")}
+            </p>
+            <p>{content.estimatedTime} minutes read</p>
           </div>
           <p>{content.mainSection}</p>
-          <p>
-            Efficiently empower seamless meta-services with impactful
-            opportunities. Distinctively transition virtual outsourcing with
-            focused e-tailers.
-          </p>
+
           <div className="flex flex-col lg:flex-row gap-10">
             <GatsbyImage
               image={daa.image.childImageSharp.gatsbyImageData}
@@ -106,14 +116,7 @@ export default function Story({
             “ Monotonectally seize superior mindshare rather than efficient
             technology. ”
           </p>
-          <p>
-            Compellingly enhance seamless resources through competitive content.
-            Continually actualize 24/365 alignments for resource-leveling
-            platforms. Energistically enhance high standards in models and
-            professional expertise. Intrinsicly iterate extensible metrics for
-            prospective opportunities. Continually develop leading-edge
-            experiences through quality e-services.
-          </p>
+
           <div className="flex gap-3">
             {["ADVENTURE", "PHOTO", "DESIGN"].map((item) => (
               <span
@@ -164,3 +167,12 @@ export default function Story({
   );
 }
 const SocialIcon: string[] = ["ic:round-facebook", "uim:twitter"];
+
+function calculateReadingTime(
+  text: string,
+  wordsPerMinute: number = 60
+): number {
+  const words: string[] = text.split(/\s+/);
+  const readingTimeMinutes: number = Math.ceil(words.length / wordsPerMinute);
+  return readingTimeMinutes;
+}

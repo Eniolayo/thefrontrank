@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
+import { STORY_DETAILS } from "../../config/link";
 
 export default function Card({
   data,
@@ -19,13 +20,13 @@ export default function Card({
 }): React.JSX.Element {
   return (
     <Link
-      to={`/story/${url}`}
+      to={STORY_DETAILS(url)}
       className="max-w-[370px] rounded-lg overflow-hidden hover:shadow-lg transition-all space-y-3 relative mx-auto block"
     >
       <GatsbyImage image={img} alt={name} className="h-60 rounded-lg" />
-      <span className="bg-black font-bold absolute top-0 right-3 font-sans bg-opacity-40 text-white rounded-lg text-sm px-2 py-1 ">
+      {/* <span className="bg-black font-bold absolute top-0 right-3 font-sans bg-opacity-40 text-white rounded-lg text-sm px-2 py-1 ">
         ADVENTURE
-      </span>
+      </span> */}
       <div className="p-2 space-y-3">
         <p>{date}</p>
         {/* <p>08.08.2021</p> */}

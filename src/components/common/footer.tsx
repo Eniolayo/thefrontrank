@@ -3,6 +3,7 @@ import Container from "../ui/container";
 import { Link } from "gatsby";
 import { Icon } from "@iconify/react";
 import { WebsiteLogo } from "../../images/svg";
+import { COPYRIGHT, PRIVACYPOLICY } from "../../config/link";
 
 export default function Footer() {
   const dateInstance = new Date();
@@ -70,9 +71,9 @@ function ContactAndLegal() {
   return (
     <ul className="space-y-2">
       {Contact.map((item) => (
-        <li key={item}>
-          <Link to={"/"} className="capitalize">
-            {item}
+        <li key={item.name}>
+          <Link to={item.link} className="capitalize">
+            {item.name}
           </Link>
         </li>
       ))}
@@ -99,9 +100,9 @@ const AboutUs = [
   { name: "Contact Us", link: "/" },
 ];
 const Contact = [
-  "Advertise",
-  "Copyright",
-  "Privacy Policy",
-  "Terms and Conditions",
+  { name: "Advertise", link: "/" },
+  { name: "Copyright", link: COPYRIGHT },
+  { name: "Privacy Policy", link: PRIVACYPOLICY },
+  { name: "Terms and Conditions", link: "/" },
 ];
 const Popular = ["Travel", "Fashion", "Branding", "Adventure", "Technology"];

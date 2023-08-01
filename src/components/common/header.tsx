@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import Container from "../ui/container";
 import "../../styles/global.css";
 import { Link } from "gatsby";
+import { ABOUT_US, HOME } from "../../config/link";
 
 export default function Header({
   mainHeading,
@@ -55,7 +56,7 @@ export default function Header({
       >
         <Container>
           <div className="flex justify-between items-center py-5 ">
-            <Link to="/" className="max-w-[270px] w-[90%]">
+            <Link to={HOME} className="max-w-[270px] w-[90%]">
               <WebsiteLogo />
             </Link>
             <nav
@@ -109,20 +110,14 @@ export default function Header({
         <div className="pt-64 py-10">
           <Container>
             <div className="text-white text-center space-y-6 py-10">
-              <span className="bg-white font-bold font-sans uppercase bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
-                {tag || "FASHION"}
-              </span>
-              <h2 className="text-5xl max-w-3xl mx-auto leading-tight font-bold">
-                {mainHeading || "Richird Norton"}
+              <h2 className="text-5xl max-w-4xl mx-auto capitalize leading-tight font-bold">
+                {mainHeading}
               </h2>
-              <p className="text-secondary-100 max-w-2xl mx-auto">
-                {subHeading ||
-                  `Progressively incentivize cooperative systems through
-                technically sound functionalities. The credibly productivate
-                seamless data.`}
+              <p className="text-secondary-100 max-w-2xl  mx-auto">
+                {subHeading}
               </p>
               <p className="text-secondary-100 max-w-2xl font-black text-xl mx-auto">
-                By Jennifer Lawrence
+                By Ayodeji Ikujuni
               </p>
             </div>
           </Container>
@@ -131,17 +126,10 @@ export default function Header({
         <div className="pt-64 py-10">
           <Container>
             <div className="text-white space-y-6 py-10">
-              <span className="bg-white font-bold font-sans bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
-                ADVENTURE
-              </span>
               <h2 className="text-5xl max-w-3xl leading-tight font-bold">
-                Richird Norton photorealistic rendering as real photos
+                {mainHeading}
               </h2>
-              <p className="text-secondary-100 max-w-2xl">
-                Progressively incentivize cooperative systems through
-                technically sound functionalities. The credibly productivate
-                seamless data.
-              </p>
+              <p className="text-secondary-100 max-w-2xl">{subHeading}</p>
             </div>
           </Container>
         </div>
@@ -156,8 +144,8 @@ const NavLinks: {
   title: string;
   url: string;
 }[] = [
-  { title: "Home", url: "/" },
-  { title: "About", url: "/about-us" },
+  { title: "Home", url: HOME },
+  { title: "About", url: ABOUT_US },
   { title: "Articles", url: "/" },
   { title: "Contact Us", url: "/" },
 ];
