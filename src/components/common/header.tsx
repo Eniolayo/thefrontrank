@@ -6,8 +6,17 @@ import "../../styles/global.css";
 import { Link } from "gatsby";
 
 export default function Header({
+  mainHeading,
+  subHeading,
+  tag,
   isStory = false,
   isNeutral = false,
+}: {
+  mainHeading: string;
+  subHeading: string;
+  tag: string;
+  isStory?: boolean;
+  isNeutral?: boolean;
 }): JSX.Element {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -23,7 +32,6 @@ export default function Header({
   duration-300
 `;
   const handleScroll = () => {
-    // Check if the page has been scrolled
     if (window.scrollY > 20) {
       setIsScrolled(true);
     } else {
@@ -32,10 +40,8 @@ export default function Header({
   };
 
   React.useEffect(() => {
-    // Attach scroll event listener on component mount
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -103,16 +109,17 @@ export default function Header({
         <div className="pt-64 py-10">
           <Container>
             <div className="text-white text-center space-y-6 py-10">
-              <span className="bg-white font-bold font-sans bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
-                FASHION
+              <span className="bg-white font-bold font-sans uppercase bg-opacity-25 rounded-lg text-sm px-2 py-1 ">
+                {tag || "FASHION"}
               </span>
               <h2 className="text-5xl max-w-3xl mx-auto leading-tight font-bold">
-                Richird Norton photorealistic rendering as real photos
+                {mainHeading || "Richird Norton"}
               </h2>
               <p className="text-secondary-100 max-w-2xl mx-auto">
-                Progressively incentivize cooperative systems through
+                {subHeading ||
+                  `Progressively incentivize cooperative systems through
                 technically sound functionalities. The credibly productivate
-                seamless data.
+                seamless data.`}
               </p>
               <p className="text-secondary-100 max-w-2xl font-black text-xl mx-auto">
                 By Jennifer Lawrence
@@ -142,7 +149,9 @@ export default function Header({
     </header>
   );
 }
+
 const SocialIcon: string[] = ["ic:round-facebook", "uim:twitter"];
+
 const NavLinks: {
   title: string;
   url: string;

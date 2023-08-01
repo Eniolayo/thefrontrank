@@ -1,40 +1,42 @@
 import * as React from "react";
 import { type HeadFC, graphql } from "gatsby";
-import { Header, Footer } from "../components/generic";
+import { Header, Footer } from "../components/common";
 import "../styles/global.css";
 import { InfoSection, EditorPick, PopularTopic } from "../templates";
-import { Entry } from "contentful";
 
 export default function IndexPage({ data }: { data: any }) {
   const [contentString, setContentString] = React.useState([]);
-  const [content, setContent] = React.useState<Entry<any>[]>([]);
+  const [content, setContent] = React.useState({
+    heading: "",
+    subHeading: "",
+    mainSection: "",
+    tag: "",
+  });
 
   React.useEffect(() => {
     try {
       const posts = data.allContentfulPageBlogPost.nodes;
-      console.log(posts[0].contentful_id);
+      // console.log(posts[0].contentful_id);
       setContentString(posts);
-      const res = posts.map((each: any) => {
-        const gf = JSON.parse(each.content.raw).content;
-        const gas = gf.filter(
-          (each: { nodeType: string }) => each.nodeType === "paragraph"
-        );
-        const extractedValues = gas.map(
-          (item: { content: any }) => item.content[0].value
-        );
-        return extractedValues.join(" ");
+      console.log(posts[0].internalName);
+
+      setContent({
+        heading: posts[0].internalName,
+        subHeading: posts[0].shortDescription.shortDescription,
+        mainSection: "",
+        tag: "",
       });
-      // console.log(res);
-      // internalName
-      // publishedDate
-      // shortDescription.shortDescription
     } catch (error) {
       console.error(error, "error");
     }
   }, []);
   return (
     <div>
-      <Header />
+      <Header
+        mainHeading={content.heading}
+        tag={""}
+        subHeading={content.subHeading}
+      />
       <PopularTopic dat={contentString} />
       <InfoSection />
       <EditorPick />

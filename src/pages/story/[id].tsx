@@ -1,10 +1,11 @@
 import React from "react";
-import { Header, Footer } from "../../components/generic";
+import { Header, Footer } from "../../components/common";
 import Container from "../../components/ui/container";
 import { Icon } from "@iconify/react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Card from "../../components/generic/card";
+import Card from "../../components/common/card";
+import axios from "axios";
 
 export default function Story({
   id,
@@ -13,6 +14,13 @@ export default function Story({
   id: string;
   data: any;
 }): React.JSX.Element {
+  const [content, setContent] = React.useState({
+    heading: "",
+    subHeading: "",
+    mainSection: "",
+    tag: "",
+  });
+
   const daa = useStaticQuery(graphql`
     query {
       image: file(relativePath: { eq: "header-bg.avif" }) {
@@ -22,47 +30,67 @@ export default function Story({
       }
     }
   `);
+  React.useEffect(() => {
+    const fetchContentfulData = async () => {
+      const spaceId = process.env.CONTENTFUL_SPACE_ID;
+      const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+      const url = `https://cdn.contentful.com/spaces/${spaceId}/entries?content_type=pageBlogPost&sys.id=${id}&access_token=${accessToken}`;
+
+      try {
+        axios
+          .get(url)
+          .then((response) => {
+            const entry = response.data.items[0];
+            console.log(entry);
+            const contentArray = entry.fields.content.content;
+
+            const filteredContent = contentArray.filter(
+              (each: { nodeType: string }) => each.nodeType === "paragraph"
+            );
+            const extractedValues = filteredContent.map(
+              (item: { content: any }) => item.content[0].value
+            );
+            setContent({
+              heading: entry.fields.internalName,
+              subHeading: "",
+              mainSection: extractedValues.join(" "),
+              tag: entry.metadata.tags[0].sys.id,
+            });
+
+            return extractedValues.join(" ");
+          })
+          .catch((error) => {
+            console.error("Error fetching content entry:", error);
+          });
+      } catch (error) {
+        console.error("Error fetching Contentful data:", error);
+        return null;
+      }
+    };
+    fetchContentfulData();
+  }, []);
 
   return (
     <div>
-      <Header isStory={true} />
-      {/* Story {id} */}
+      <Header
+        mainHeading={content.heading}
+        tag={content.tag}
+        isStory={true}
+        subHeading=""
+      />
       <Container>
         <div className="mt-24 space-y-10 text-lg max-w-[900px] mx-auto">
           <div className="flex justify-between">
             <p>08.08.2021</p>
             <p>4 minutes read</p>
           </div>
-          <p>
-            Seamlessly syndicate cutting-edge architectures rather than
-            collaborative collaboration and idea-sharing. Proactively incubate
-            visionary interfaces whereas premium benefits. Seamlessly negotiate
-            ubiquitous leadership skills rather than parallel ideas.
-            Dramatically visualize superior interfaces for best-of-breed
-            alignments. Synergistically formulate performance based users
-            through customized relationships. Interactively deliver
-            cross-platform ROI via granular systems. Intrinsicly enhance
-            effective initiatives vis-a-vis orthogonal outsourcing. Rapidiously
-            monetize market-driven opportunities with multifunctional users.
-            Collaboratively enhance visionary opportunities through
-            revolutionary schemas. Progressively network just in time customer
-            service without real-time scenarios.
-          </p>
-          <p>
-            Synergistically drive e-business leadership with unique synergy.
-            Compellingly seize market positioning ROI and bricks-and-clicks
-            e-markets. Proactively myocardinate timely platforms through
-            distributed ideas. Professionally optimize enabled core competencies
-            for leading-edge sources. Professionally enhance stand-alone
-            leadership with innovative synergy. Rapidiously generate backend
-            experiences vis-a-vis long-term high-impact relationships.
-          </p>
+          <p>{content.mainSection}</p>
           <p>
             Efficiently empower seamless meta-services with impactful
             opportunities. Distinctively transition virtual outsourcing with
             focused e-tailers.
           </p>
-          <div className="flex gap-10">
+          <div className="flex flex-col lg:flex-row gap-10">
             <GatsbyImage
               image={daa.image.childImageSharp.gatsbyImageData}
               alt="My Image"

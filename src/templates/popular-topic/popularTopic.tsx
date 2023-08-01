@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import Card from "../../components/generic/card";
+import Card from "../../components/common/card";
 import Container from "../../components/ui/container";
 
 export default function PopularTopic({ dat }: { dat: any }): React.JSX.Element {

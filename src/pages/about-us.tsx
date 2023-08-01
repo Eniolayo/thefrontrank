@@ -1,10 +1,11 @@
 import React from "react";
 import Container from "../components/ui/container";
-import { Footer, Header } from "../components/generic";
+import { Footer, Header } from "../components/common";
 // import { gql, useQuery } from "@apollo/client";
 // import client from "../../apolloClient";
 // import { graphql, useStaticQuery } from "gatsby";
-// import useGetMoreData from "../utils/useGetMoreData";
+import useGetMoreData from "../utils/useGetMoreData";
+import axios from "axios";
 
 // export const Wuery = gql`
 //   query BlogPost($contentfulId: String!) {
@@ -38,16 +39,6 @@ import { Footer, Header } from "../components/generic";
 
 export default function AboutUs() {
   const dataInstance = new Date();
-  // const [data] = useGetMoreData("4YpnxRJ6o0uhD0pxY7hHRF");
-  // React.useEffect(() => {
-  //   console.log(data);
-
-  //   const { contentfulPageBlogPost } = data;
-  // }, []);
-
-  // console.log(gas);
-  // console.log(error?.message);
-  // console.log(loading);
 
   return (
     <main>
@@ -149,60 +140,3 @@ export default function AboutUs() {
     </main>
   );
 }
-// export const Puery = graphql`
-//   query {
-//     contentfulPageBlogPost(contentful_id: { eq: "4YpnxRJ6o0uhD0pxY7hHRF" }) {
-//       id
-//       title
-//       shortDescription {
-//         shortDescription
-//       }
-//       content {
-//         raw
-//       }
-//       featuredImage {
-//         file {
-//           url
-//         }
-//         gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, formats: AUTO)
-//       }
-//       publishedDate(fromNow: false)
-//       author {
-//         avatar {
-//           file {
-//             url
-//           }
-//           title
-//           gatsbyImageData(
-//             layout: FULL_WIDTH
-//             placeholder: BLURRED
-//             formats: AUTO
-//           )
-//         }
-//       }
-//     }
-//   }
-// `;
-
-// function newFunction(
-//   data: any,
-//   setContentString: React.Dispatch<React.SetStateAction<string>>
-// ) {
-//   try {
-//     const posts = data.allContentfulPageBlogPost.nodes;
-//     console.log(posts[0]);
-
-//     const fi: [] = JSON.parse(posts[0].content.raw).content;
-//     const gas = fi.filter(
-//       (each: { nodeType: string }) => each.nodeType === "paragraph"
-//     );
-//     const extractedValues = gas.map(
-//       (item: { content: any }) => item.content[0].value
-//     );
-//     const concatenatedString = extractedValues.join(" ");
-//     setContentString(concatenatedString);
-//     console.log(concatenatedString, "concatenatedString");
-//   } catch (error) {
-//     console.error(error, "error");
-//   }
-// }
